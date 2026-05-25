@@ -1,10 +1,13 @@
 package pm_prova2_m;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
 
         ArrayList<Veiculo> veiculos = new ArrayList<>();
         ArrayList<Aluguel> alugueis = new ArrayList<>();
@@ -57,61 +60,154 @@ public class Main {
                 StatusAluguel.ATIVO
         );
 
-        Executivo executivo = new Executivo(
-                "Fernando",
-                7,
-                5000,
-                StatusAluguel.FINALIZADO
-        );
-
         alugueis.add(basico);
         alugueis.add(premium);
-        alugueis.add(executivo);
 
-        System.out.println("TODOS OS VEICULOS");
+        int opcao = -1;
 
-        for (Veiculo veiculo : veiculos) {
-            veiculo.exibirDados();
-        }
+        while (opcao != 0) {
 
-        System.out.println("TODOS OS ALUGUEIS");
+            System.out.println("1 - Associar veiculo a aluguel");
+            System.out.println("2 - Exibir todos os veiculos");
+            System.out.println("3 - Exibir todos os alugueis");
+            System.out.println("4 - Exibir veiculos disponiveis");
+            System.out.println("5 - Avaliar");
+            System.out.println("6 - Realizar inspecao");
+            System.out.println("7 - Remover veiculos em manutencao");
+            System.out.println("0 - Sair");
 
-        for (Aluguel aluguel : alugueis) {
-            aluguel.exibirDetalhes();
-        }
+            opcao = sc.nextInt();
 
-        System.out.println("VEICULOS DISPONIVEIS");
+            switch (opcao) {
 
-        for (Veiculo veiculo : veiculos) {
+                case 1:
 
-            if (veiculo.getStatusVeiculo() == StatusVeiculo.DISPONIVEL) {
-                veiculo.exibirDados();
+                    System.out.println("1 - Basico");
+                    System.out.println("2 - Premium");
+
+                    int aluguelEscolhido = sc.nextInt();
+
+                    System.out.println("1 - Carro");
+                    System.out.println("2 - Moto");
+                    System.out.println("3 - Van");
+
+                    int veiculoEscolhido = sc.nextInt();
+
+                    Aluguel aluguel = null;
+                    Veiculo veiculo = null;
+
+                    if (aluguelEscolhido == 1) {
+                        aluguel = basico;
+                    }
+
+                    if (aluguelEscolhido == 2) {
+                        aluguel = premium;
+                    }
+
+                    if (veiculoEscolhido == 1) {
+                        veiculo = carro;
+                    }
+
+                    if (veiculoEscolhido == 2) {
+                        veiculo = moto;
+                    }
+
+                    if (veiculoEscolhido == 3) {
+                        veiculo = van;
+                    }
+
+                    aluguel.adicionarVeiculo(veiculo);
+
+                    System.out.println("Veiculo associado");
+                    break;
+
+                case 2:
+
+                    for (Veiculo v : veiculos) {
+                        v.exibirDados();
+                    }
+
+                    break;
+
+                case 3:
+
+                    for (Aluguel a : alugueis) {
+                        a.exibirDetalhes();
+                    }
+
+                    break;
+
+                case 4:
+
+                    for (Veiculo v : veiculos) {
+
+                        if (v.getStatusVeiculo() == StatusVeiculo.DISPONIVEL) {
+                            v.exibirDados();
+                        }
+                    }
+
+                    break;
+
+                case 5:
+
+                    System.out.println("1 - Carro");
+                    System.out.println("2 - Van");
+
+                    int avaliacao = sc.nextInt();
+
+                    System.out.println("Digite a nota:");
+
+                    int nota = sc.nextInt();
+
+                    if (avaliacao == 1) {
+                        carro.avaliar(nota);
+                    }
+
+                    if (avaliacao == 2) {
+                        van.avaliar(nota);
+                    }
+
+                    System.out.println("Avaliacao realizada");
+
+                    break;
+
+                case 6:
+
+                    System.out.println("1 - Moto");
+                    System.out.println("2 - Van");
+
+                    int inspecao = sc.nextInt();
+
+                    if (inspecao == 1) {
+                        moto.realizarInspecao();
+                    }
+
+                    if (inspecao == 2) {
+                        van.realizarInspecao();
+                    }
+
+                    break;
+
+                case 7:
+
+                    veiculos.removeIf(v ->
+                            v.getStatusVeiculo() == StatusVeiculo.MANUTENCAO
+                    );
+
+                    System.out.println("Veiculos removidos");
+
+                    break;
+
+                case 0:
+
+                    System.out.println("Programa encerrado");
+
+                    break;
+
+                default:
+
+                    System.out.println("Opcao invalida");
             }
-        }
-
-        carro.avaliar(9);
-        van.avaliar(10);
-        executivo.avaliar(8);
-
-        System.out.println("AVALIACOES REALIZADAS");
-
-        carro.exibirDados();
-        van.exibirDados();
-        executivo.exibirDetalhes();
-
-        System.out.println("INSPECOES");
-
-        moto.realizarInspecao();
-        van.realizarInspecao();
-
-        veiculos.removeIf(veiculo ->
-                veiculo.getStatusVeiculo() == StatusVeiculo.MANUTENCAO
-        );
-
-        System.out.println("VEICULOS APOS REMOCAO");
-
-        for (Veiculo veiculo : veiculos) {
-            veiculo.exibirDados();
         }
     }
 }
