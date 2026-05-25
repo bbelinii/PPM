@@ -1,20 +1,53 @@
-import java.util.ArrayList;
+package pm_prova2_m;
 
 public abstract class Aluguel {
 
-    protected ArrayList<Veiculo> veiculos;
+    private String nomeCliente;
+    private int quantidadeDias;
+    private double valorTotal;
+    private StatusAluguel status;
 
-    public Aluguel() {
-        veiculos = new ArrayList<>();
+    public Aluguel(String nomeCliente, int quantidadeDias, double valorTotal, StatusAluguel status) {
+
+        this.nomeCliente = nomeCliente;
+        this.quantidadeDias = quantidadeDias;
+        this.valorTotal = valorTotal;
+        this.status = status;
     }
 
-    public void adicionarVeiculo(Veiculo veiculo) {
-        veiculos.add(veiculo);
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public ArrayList<Veiculo> getVeiculos() {
-        return veiculos;
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
-    public abstract void exibirDados();
+    public int getQuantidadeDias() {
+        return quantidadeDias;
+    }
+
+    public void setQuantidadeDias(int quantidadeDias) {
+        this.quantidadeDias = quantidadeDias;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public StatusAluguel getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAluguel status) {
+        this.status = status;
+    }
+
+    public abstract void exibirDetalhes();
+
+    public abstract boolean possuiSeguroIncluso();
 }

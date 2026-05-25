@@ -1,26 +1,31 @@
+package pm_prova2_m;
+
 public class Basico extends Aluguel {
 
     private int limiteKm;
-    private boolean seguroIncluso;
 
-    public Basico() {
-        limiteKm = 100;
-        seguroIncluso = false;
+    public Basico(String nomeCliente, int quantidadeDias, double valorTotal, StatusAluguel status) {
+
+        super(nomeCliente, quantidadeDias, valorTotal, status);
+
+        this.limiteKm = 100;
     }
 
     @Override
-    public void exibirDados() {
+    public void exibirDetalhes() {
 
         System.out.println("ALUGUEL BASICO");
-        System.out.println("Limite de KM: " + limiteKm);
-        System.out.println("Seguro incluso: " + seguroIncluso);
-
-        System.out.println("Veiculos associados:");
-
-        for (Veiculo veiculo : veiculos) {
-            System.out.println("- " + veiculo.getModelo());
-        }
-
+        System.out.println("Cliente: " + getNomeCliente());
+        System.out.println("Dias: " + getQuantidadeDias());
+        System.out.println("Valor Total: " + getValorTotal());
+        System.out.println("Status: " + getStatus());
+        System.out.println("Limite KM: " + limiteKm);
+        System.out.println("Seguro Incluso: " + possuiSeguroIncluso());
         System.out.println();
+    }
+
+    @Override
+    public boolean possuiSeguroIncluso() {
+        return false;
     }
 }

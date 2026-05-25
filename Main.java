@@ -1,3 +1,5 @@
+package pm_prova2_m;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -41,20 +43,30 @@ public class Main {
         veiculos.add(moto);
         veiculos.add(van);
 
-        Basico aluguelBasico = new Basico();
-        Premium aluguelPremium = new Premium();
-        Executivo aluguelExecutivo = new Executivo();
+        Basico basico = new Basico(
+                "Lucas",
+                3,
+                750,
+                StatusAluguel.ATIVO
+        );
 
-        aluguelBasico.adicionarVeiculo(carro);
+        Premium premium = new Premium(
+                "Mariana",
+                5,
+                2250,
+                StatusAluguel.ATIVO
+        );
 
-        aluguelPremium.adicionarVeiculo(van);
+        Executivo executivo = new Executivo(
+                "Fernando",
+                7,
+                5000,
+                StatusAluguel.FINALIZADO
+        );
 
-        aluguelExecutivo.adicionarVeiculo(carro);
-        aluguelExecutivo.adicionarVeiculo(van);
-
-        alugueis.add(aluguelBasico);
-        alugueis.add(aluguelPremium);
-        alugueis.add(aluguelExecutivo);
+        alugueis.add(basico);
+        alugueis.add(premium);
+        alugueis.add(executivo);
 
         System.out.println("TODOS OS VEICULOS");
 
@@ -65,7 +77,7 @@ public class Main {
         System.out.println("TODOS OS ALUGUEIS");
 
         for (Aluguel aluguel : alugueis) {
-            aluguel.exibirDados();
+            aluguel.exibirDetalhes();
         }
 
         System.out.println("VEICULOS DISPONIVEIS");
@@ -77,15 +89,15 @@ public class Main {
             }
         }
 
-        System.out.println("AVALIACOES");
-
         carro.avaliar(9);
         van.avaliar(10);
-        aluguelExecutivo.avaliar(8);
+        executivo.avaliar(8);
+
+        System.out.println("AVALIACOES REALIZADAS");
 
         carro.exibirDados();
         van.exibirDados();
-        aluguelExecutivo.exibirDados();
+        executivo.exibirDetalhes();
 
         System.out.println("INSPECOES");
 
