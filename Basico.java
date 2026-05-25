@@ -1,21 +1,24 @@
 public class Basico extends Aluguel {
 
     private int limiteKm;
-    private boolean seguro;
+    private boolean seguroIncluso;
 
     public Basico() {
         limiteKm = 100;
-        seguro = false;
+        seguroIncluso = false;
     }
 
     @Override
     public void exibirDados() {
-        System.out.println("Aluguel Basico");
-        System.out.println("Limite KM: " + limiteKm);
-        System.out.println("Seguro: " + seguro);
 
-        for (Veiculo v : veiculos) {
-            System.out.println(v.getModelo());
+        System.out.println("ALUGUEL BASICO");
+        System.out.println("Limite de KM: " + limiteKm);
+        System.out.println("Seguro incluso: " + seguroIncluso);
+
+        System.out.println("Veiculos associados:");
+
+        for (Veiculo veiculo : veiculos) {
+            System.out.println("- " + veiculo.getModelo());
         }
 
         System.out.println();

@@ -12,5 +12,9 @@ public abstract class Aluguel {
         veiculos.add(veiculo);
     }
 
+    public ArrayList<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
     public abstract void exibirDados();
 }

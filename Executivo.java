@@ -1,11 +1,11 @@
 public class Executivo extends Aluguel implements Avaliavel {
 
-    private boolean kmIlimitado;
+    private boolean quilometragemIlimitada;
     private boolean motoristaParticular;
     private int nota;
 
     public Executivo() {
-        kmIlimitado = true;
+        quilometragemIlimitada = true;
         motoristaParticular = true;
     }
 
@@ -16,13 +16,16 @@ public class Executivo extends Aluguel implements Avaliavel {
 
     @Override
     public void exibirDados() {
-        System.out.println("Aluguel Executivo");
-        System.out.println("KM ilimitado: " + kmIlimitado);
-        System.out.println("Motorista: " + motoristaParticular);
+
+        System.out.println("ALUGUEL EXECUTIVO");
+        System.out.println("Quilometragem ilimitada: " + quilometragemIlimitada);
+        System.out.println("Motorista particular: " + motoristaParticular);
         System.out.println("Nota: " + nota);
 
-        for (Veiculo v : veiculos) {
-            System.out.println(v.getModelo());
+        System.out.println("Veiculos associados:");
+
+        for (Veiculo veiculo : veiculos) {
+            System.out.println("- " + veiculo.getModelo());
         }
 
         System.out.println();

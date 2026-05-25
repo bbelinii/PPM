@@ -19,7 +19,7 @@ public class Main {
 
         Moto moto = new Moto(
                 "BBB2222",
-                "XRE",
+                "XRE 300",
                 2021,
                 120,
                 20000,
@@ -41,47 +41,65 @@ public class Main {
         veiculos.add(moto);
         veiculos.add(van);
 
-        Basico basico = new Basico();
-        Premium premium = new Premium();
+        Basico aluguelBasico = new Basico();
+        Premium aluguelPremium = new Premium();
+        Executivo aluguelExecutivo = new Executivo();
 
-        basico.adicionarVeiculo(carro);
-        premium.adicionarVeiculo(van);
+        aluguelBasico.adicionarVeiculo(carro);
 
-        alugueis.add(basico);
-        alugueis.add(premium);
+        aluguelPremium.adicionarVeiculo(van);
+
+        aluguelExecutivo.adicionarVeiculo(carro);
+        aluguelExecutivo.adicionarVeiculo(van);
+
+        alugueis.add(aluguelBasico);
+        alugueis.add(aluguelPremium);
+        alugueis.add(aluguelExecutivo);
 
         System.out.println("TODOS OS VEICULOS");
 
-        for (Veiculo v : veiculos) {
-            v.exibirDados();
+        for (Veiculo veiculo : veiculos) {
+            veiculo.exibirDados();
         }
 
         System.out.println("TODOS OS ALUGUEIS");
 
-        for (Aluguel a : alugueis) {
-            a.exibirDados();
+        for (Aluguel aluguel : alugueis) {
+            aluguel.exibirDados();
         }
 
         System.out.println("VEICULOS DISPONIVEIS");
 
-        for (Veiculo v : veiculos) {
-            if (v.getStatusVeiculo() == StatusVeiculo.DISPONIVEL) {
-                v.exibirDados();
+        for (Veiculo veiculo : veiculos) {
+
+            if (veiculo.getStatusVeiculo() == StatusVeiculo.DISPONIVEL) {
+                veiculo.exibirDados();
             }
         }
 
+        System.out.println("AVALIACOES");
+
         carro.avaliar(9);
         van.avaliar(10);
+        aluguelExecutivo.avaliar(8);
+
+        carro.exibirDados();
+        van.exibirDados();
+        aluguelExecutivo.exibirDados();
+
+        System.out.println("INSPECOES");
 
         moto.realizarInspecao();
         van.realizarInspecao();
 
-        veiculos.removeIf(v -> v.getStatusVeiculo() == StatusVeiculo.MANUTENCAO);
+        veiculos.removeIf(veiculo ->
+                veiculo.getStatusVeiculo() == StatusVeiculo.MANUTENCAO
+        );
 
         System.out.println("VEICULOS APOS REMOCAO");
 
-        for (Veiculo v : veiculos) {
-            v.exibirDados();
+        for (Veiculo veiculo : veiculos) {
+            veiculo.exibirDados();
         }
     }
 }

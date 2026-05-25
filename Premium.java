@@ -1,21 +1,24 @@
 public class Premium extends Aluguel {
 
-    private boolean kmIlimitado;
-    private boolean seguro;
+    private boolean quilometragemIlimitada;
+    private boolean seguroIncluso;
 
     public Premium() {
-        kmIlimitado = true;
-        seguro = true;
+        quilometragemIlimitada = true;
+        seguroIncluso = true;
     }
 
     @Override
     public void exibirDados() {
-        System.out.println("Aluguel Premium");
-        System.out.println("KM ilimitado: " + kmIlimitado);
-        System.out.println("Seguro: " + seguro);
 
-        for (Veiculo v : veiculos) {
-            System.out.println(v.getModelo());
+        System.out.println("ALUGUEL PREMIUM");
+        System.out.println("Quilometragem ilimitada: " + quilometragemIlimitada);
+        System.out.println("Seguro incluso: " + seguroIncluso);
+
+        System.out.println("Veiculos associados:");
+
+        for (Veiculo veiculo : veiculos) {
+            System.out.println("- " + veiculo.getModelo());
         }
 
         System.out.println();
