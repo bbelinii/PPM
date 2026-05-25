@@ -67,7 +67,7 @@ public class Main {
 
         while (opcao != 0) {
 
-            System.out.println("1 - Associar veiculo a aluguel");
+            System.out.println("1 - Associar veiculo ao aluguel");
             System.out.println("2 - Exibir todos os veiculos");
             System.out.println("3 - Exibir todos os alugueis");
             System.out.println("4 - Exibir veiculos disponiveis");
@@ -82,19 +82,13 @@ public class Main {
 
                 case 1:
 
+                    System.out.println("Escolha o aluguel");
                     System.out.println("1 - Basico");
                     System.out.println("2 - Premium");
 
                     int aluguelEscolhido = sc.nextInt();
 
-                    System.out.println("1 - Carro");
-                    System.out.println("2 - Moto");
-                    System.out.println("3 - Van");
-
-                    int veiculoEscolhido = sc.nextInt();
-
                     Aluguel aluguel = null;
-                    Veiculo veiculo = null;
 
                     if (aluguelEscolhido == 1) {
                         aluguel = basico;
@@ -104,21 +98,38 @@ public class Main {
                         aluguel = premium;
                     }
 
-                    if (veiculoEscolhido == 1) {
-                        veiculo = carro;
+                    int adicionar = 1;
+
+                    while (adicionar != 0) {
+
+                        System.out.println("Escolha o veiculo");
+                        System.out.println("1 - Carro");
+                        System.out.println("2 - Moto");
+                        System.out.println("3 - Van");
+                        System.out.println("0 - Finalizar");
+
+                        int veiculoEscolhido = sc.nextInt();
+
+                        if (veiculoEscolhido == 1) {
+                            aluguel.adicionarVeiculo(carro);
+                            System.out.println("Carro adicionado");
+                        }
+
+                        if (veiculoEscolhido == 2) {
+                            aluguel.adicionarVeiculo(moto);
+                            System.out.println("Moto adicionada");
+                        }
+
+                        if (veiculoEscolhido == 3) {
+                            aluguel.adicionarVeiculo(van);
+                            System.out.println("Van adicionada");
+                        }
+
+                        if (veiculoEscolhido == 0) {
+                            adicionar = 0;
+                        }
                     }
 
-                    if (veiculoEscolhido == 2) {
-                        veiculo = moto;
-                    }
-
-                    if (veiculoEscolhido == 3) {
-                        veiculo = van;
-                    }
-
-                    aluguel.adicionarVeiculo(veiculo);
-
-                    System.out.println("Veiculo associado");
                     break;
 
                 case 2:
@@ -155,7 +166,7 @@ public class Main {
 
                     int avaliacao = sc.nextInt();
 
-                    System.out.println("Digite a nota:");
+                    System.out.println("Digite a nota");
 
                     int nota = sc.nextInt();
 
